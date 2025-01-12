@@ -100,7 +100,7 @@ exports.takeThreeBestRating = (req, res, next) => {
 exports.rateBook = (req, res, next) => {
   const bookId = req.params.id;
   const userId = req.auth.userId;
-  const grade = req.body.grade;
+  const grade = req.body.rating;
 
   if (!bookId) {
     return res.status(400).json({ message: "ID du livre manquant." });
