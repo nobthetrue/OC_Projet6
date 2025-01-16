@@ -102,6 +102,8 @@ exports.rateBook = (req, res, next) => {
   const userId = req.auth.userId;
   const grade = req.body.rating;
 
+  console.log(bookId)
+
   if (!bookId) {
     return res.status(400).json({ message: "ID du livre manquant." });
   }
@@ -127,8 +129,8 @@ exports.rateBook = (req, res, next) => {
       book.averageRating = totalGrades / book.ratings.length;
 
       book.save()
-        .then(() => res.status(200).json({ message: "Note ajoutée avec succès !" }))
-        .catch((error) => res.status(400).json({ message: "pas réussi" }));
+        .then(() => res.status(200).json(book))
+        .catch((error) => res.status(400).json({ message: "Pas réussi" }));
     })
     .catch((error) => res.status(500).json({ error }));
 };
